@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Audit Page Styles (assets/css/audit.css)
+   ========================================================================== */
+
+/* --- Hero Section --- */
+.audit-hero {
+    background-color: #ffffff;
+    padding: 6rem 2rem 3rem;
+}
+
+/* --- Audit Section & Container --- */
+.audit-section {
+    background-color: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+    padding: 4rem 2rem;
+}
+
+.audit-container {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.audit-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 3rem;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+}

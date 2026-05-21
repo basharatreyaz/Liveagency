@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Footer Styles (assets/css/footer.css)
+   ========================================================================== */
+
+.site-footer {
+    background-color: #f8f9fa; /* Very light grey to separate from main content */
+    border-top: 1px solid #eaeaea;
+    padding-top: 4rem;
+    font-family: 'Outfit', sans-serif;
+    color: #4a4a4a;
+}
+
+.footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem 3rem;
+}
+
+/* Footer Typography & Links */
+.footer-col h3 {
+    color: #1e1e1e;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.footer-col p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-top: 1rem;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.footer-col a {
+    text-decoration: none;
+    color: #4a4a4a;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #0073aa; /* WordPress Blue */
+}
+
+/* Footer Logo Adjustment */
+.footer-logo {
+    font-size: 1.4rem;
+}
+
+.footer-logo span {
+    color: #0073aa;
+}
+
+/* Footer Bottom Bar */
+.footer-bottom {
+    background-color: #ffffff;
+    border-top: 1px solid #eaeaea;
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #717171;
+}
+
+/* Responsive Footer Layout */
+@media (max-width: 900px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .footer-col h3 {
+        margin-bottom: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Footer Dark Mode Overrides
+   ========================================================================== */
+html.dark-theme .site-footer {
+    background-color: #0f172a !important;
+    border-top-color: #334155 !important;
+    color: #94a3b8;
+}
+
+html.dark-theme .footer-col h3 {
+    color: #f8fafc;
+}
+
+html.dark-theme .footer-col a {
+    color: #e2e8f0;
+}
+
+html.dark-theme .footer-bottom {
+    background-color: #0f172a !important;
+    border-top-color: #334155 !important;
+}
+
+html.dark-theme .footer-bottom p {
+    color: #94a3b8;
+}

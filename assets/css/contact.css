@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Contact Page Component Styles (assets/css/contact.css)
+   ========================================================================== */
+
+/* ==========================================================================
+   Contact Hero Section
+   ========================================================================== */
+.contact-hero {
+    background-color: #ffffff;
+    padding: 6rem 2rem 3rem;
+}
+
+/* ==========================================================================
+   Contact Structural Grid Setup
+   ========================================================================== */
+.contact-layout-section {
+    background-color: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 4rem;
+    align-items: stretch;
+}
+
+/* Sidebar Informational Elements */
+.contact-info-sidebar h2 {
+    font-size: 2rem;
+    color: var(--heading-color);
+    margin: 0 0 1rem 0;
+    font-weight: 800;
+}
+
+.sidebar-intro {
+    color: var(--text-main);
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+}
+
+.info-meta-card {
+    display: flex;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.meta-icon {
+    background-color: #e0f2fe;
+    color: var(--primary);
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.info-meta-card h3 {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.1rem;
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+.info-meta-card p {
+    margin: 0;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.info-meta-card a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Interactive Form Construction Elements */
+.contact-form-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   Responsive Scaling Media Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .contact-form-card {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-hero {
+        padding: 4rem 1.5rem 2rem;
+    }
+}

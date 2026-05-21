@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Services Page Styles (assets/css/services.css)
+   ========================================================================== */
+
+/* --- Hero Section --- */
+.services-hero {
+    background-color: #ffffff;
+    padding: 6rem 2rem 3rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* --- Services Display Grid --- */
+.services-list-section {
+    background-color: var(--bg-light, #f8fafc);
+}
+
+.services-page-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Clean 2-column agency matrix layout */
+    gap: 3rem;
+}
+
+.service-large-card {
+    background: #ffffff;
+    padding: 3rem;
+    border-radius: var(--radius, 8px);
+    border: 1px solid var(--border-color, #e2e8f0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.service-large-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.service-large-card h2 {
+    font-size: 1.75rem;
+    color: var(--heading-color, #111827);
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.service-large-card p {
+    color: var(--text-main, #4b5563);
+    line-height: 1.6;
+    font-size: 1.05rem;
+    margin-bottom: 2rem;
+}
+
+/* Service Bullet Layouts */
+.service-bullet-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px solid var(--border-color, #e2e8f0);
+    padding-top: 1.5rem;
+}
+
+.service-bullet-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 500;
+    color: var(--heading-color, #111827);
+}
+
+.service-bullet-list i {
+    color: #10b981; /* Success Green icons */
+    font-size: 1.15rem;
+    flex-shrink: 0;
+}
+
+/* --- Bottom Conversion Banner --- */
+.services-cta {
+    background-color: var(--bg-dark, #0f172a);
+    color: #ffffff;
+    padding: 6rem 2rem;
+}
+
+.services-cta h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.services-cta p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 900px) {
+    .services-page-grid {
+        grid-template-columns: 1fr; /* Switch into stacked column format on mobile/tablet viewports */
+        gap: 2rem;
+    }
+
+    .service-large-card {
+        padding: 2rem;
+    }
+}

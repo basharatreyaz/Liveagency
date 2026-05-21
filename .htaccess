@@ -1,0 +1,30 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# 1. Block direct browser access to SQLite Database files (Critical Security)
+<FilesMatch "\.db$">
+    Require all denied
+</FilesMatch>
+
+# 2. Disable MultiViews to prevent Apache from resolving partial paths
+# Options -MultiViews
+
+# 3. Set explicit 404 Error Document fallback
+ErrorDocument 404 /404.php
+
+# 4. Route sitemap.xml to our dynamic PHP generator
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# 5. If the requested URL is an exact file or directory, serve it normally
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# 6. If the URL matches a PHP file, append .php (e.g., /team -> team.php)
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# 7. Route all other non-existent requests to the blog post engine to check for slugs
+RewriteRule ^(.*)$ post.php?slug=$1 [QSA,L]
+</IfModule>

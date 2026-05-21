@@ -1,0 +1,102 @@
+/* ==========================================================================
+   Team Page Styles (assets/css/team.css)
+   ========================================================================== */
+
+/* --- Hero Section --- */
+.team-hero {
+    background-color: #ffffff;
+    padding: 6rem 2rem 3rem;
+}
+
+/* --- Team Grid Section --- */
+.team-grid-section {
+    padding: 4rem 2rem;
+    background-color: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+}
+
+.team-empty-state {
+    text-align: center;
+    color: var(--text-main);
+    padding: 3rem 0;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.team-image-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 3px solid var(--bg-light);
+}
+
+.team-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.team-initials {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.team-name {
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--heading-color);
+    margin-bottom: 0.25rem;
+}
+
+.team-title {
+    color: var(--primary);
+    margin-top: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.team-experience {
+    color: var(--text-main);
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .team-hero {
+        padding: 4rem 1.5rem 2rem;
+    }
+    .team-grid-section {
+        padding: 3rem 1.5rem;
+    }
+}

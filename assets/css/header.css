@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Header & Navigation Styles (assets/css/header.css)
+   ========================================================================== */
+
+/* Main Header Container */
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eaeaea;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    height: 80px;
+    box-sizing: border-box;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Text Logo */
+.text-logo {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1e1e1e;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.text-logo span {
+    color: var(--primary); /* Classic WordPress Blue */
+    font-weight: 900;
+    margin-right: 4px;
+}
+
+/* Primary Navigation (Desktop) */
+.main-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #4a4a4a;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--primary); 
+}
+
+/* Call to Action Button */
+.desktop-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.header-cta .btn {
+    padding: 0.75rem 1.5rem;
+}
+
+/* Hide Mobile Elements on Desktop */
+.hamburger {
+    display: none;
+}
+.mobile-cta {
+    display: none;
+}
+.mobile-controls {
+    display: none;
+}
+
+/* ==========================================================================
+   Mobile Responsive Menu (Slide from Right)
+   ========================================================================== */
+@media (max-width: 1024px) {
+    /* Hamburger Icon Setup */
+    .mobile-controls {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+        z-index: 1001; /* Stays above the sliding menu */
+    }
+
+    .hamburger .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        background-color: #1e1e1e;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Hide Desktop CTA */
+    .desktop-cta {
+        display: none;
+    }
+
+    /* Slide-in Menu Layout (Right Side) */
+    .main-nav {
+        position: fixed; /* Fixed to the viewport */
+        top: 0;
+        right: 0; /* Anchors the menu to the right side */
+        width: 250px; /* Width of the sidebar menu */
+        height: 100vh; /* Full screen height */
+        background-color: #ffffff;
+        box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1); /* Negative X value moves shadow to the left */
+        padding: 5rem 2rem 2rem; /* Top padding clears the header area */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Align text to the left */
+        
+        /* Hidden state (Pushed off-screen to the RIGHT) */
+        visibility: hidden;
+        transform: translateX(100%); /* Pushes it exactly 100% of its width to the right */
+        transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    /* Active State (Slides in) */
+    .main-nav.active {
+        visibility: visible;
+        transform: translateX(0); /* Pulls it back to its natural position at right:0 */
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        text-align: left; /* Align links to the left */
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+    .main-nav a {
+        font-size: 1.15rem; /* Make links slightly larger for mobile tapping */
+        display: block;
+        width: 100%;
+    }
+
+    /* Show CTA inside mobile menu */
+    .mobile-cta {
+        display: block;
+        margin-top: 2rem;
+        width: 100%;
+        text-align: left;
+    }
+
+    .mobile-cta .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Hamburger Animation to 'X' */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+/* ==========================================================================
+   Header Dark Mode Overrides
+   ========================================================================== */
+html.dark-theme .text-logo { color: #f8fafc; }
+html.dark-theme .main-nav a { color: #e2e8f0; }
+html.dark-theme .main-nav a:hover { color: var(--primary); }
+html.dark-theme .hamburger .bar { background-color: #f8fafc; }
+html.dark-theme .site-header { border-bottom: 1px solid #334155; }

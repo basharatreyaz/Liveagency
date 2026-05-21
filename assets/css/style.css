@@ -1,0 +1,275 @@
+/* ==========================================================================
+   Global Base Styles
+   ========================================================================== */
+
+:root {
+     --primary: #0073aa;
+    --primary-hover: #005177;
+    --text-main: #4b5563;
+    --heading-color: #111827;
+    --bg-light: #f8fafc;
+    --bg-dark: #0f172a;
+    --border-color: #e2e8f0;
+    --radius: 8px;
+    --transition: all 0.3s ease; 
+
+    
+}
+
+/* Force consistent width and padding calculations globally */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin: 0;
+    padding: 80px 0 0 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Safely trap any overflowing elements (like the homepage badges) to prevent horizontal scrolling */
+.site-content {
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700; /* Outfit looks great bold */
+    margin-top: 0;
+    color: var(--heading-color);
+}
+
+/* Ensure all headings inside dark CTA / Data sections explicitly override global colors */
+.lead-section h1, .lead-section h2, .lead-section h3, .lead-section h4, .lead-section h5, .lead-section h6,
+.about-cta h1, .about-cta h2, .about-cta h3, .about-cta h4, .about-cta h5, .about-cta h6,
+.services-cta h1, .services-cta h2, .services-cta h3, .services-cta h4, .services-cta h5, .services-cta h6,
+.pricing-enterprise-cta h1, .pricing-enterprise-cta h2, .pricing-enterprise-cta h3, .pricing-enterprise-cta h4, .pricing-enterprise-cta h5, .pricing-enterprise-cta h6,
+.testimonial-section h1, .testimonial-section h2, .testimonial-section h3, .testimonial-section h4, .testimonial-section h5, .testimonial-section h6 {
+    color: #ffffff;
+}
+
+section {
+    padding: 6rem 2rem;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 4rem 1.5rem;
+    }
+    .page-title {
+        font-size: 2.75rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+}
+
+/* ==========================================================================
+   Global Section Typographies
+   ========================================================================== */
+
+.section-title {
+    font-size: 2.5rem;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.section-tag {
+    display: inline-block;
+    background-color: #e0f2fe;
+    color: var(--primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-desc {
+    color: var(--text-main);
+    font-size: 1.125rem;
+    margin-bottom: 4rem;
+    max-width: 600px;
+}
+
+.page-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    max-width: 750px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   Global Button Styles
+   ========================================================================== */
+
+.btn {
+    display: inline-block;
+    padding: 0.875rem 1.75rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+/* Primary Filled Button */
+.btn-primary {
+    background-color: var(--primary); /* WordPress Blue */
+    color: #ffffff;
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover); /* Darker Blue */
+    border-color: var(--primary-hover);
+    color: #ffffff;
+}
+
+/* Outlined Button */
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+    color: #ffffff;
+}
+
+/* Responsive Button Adjustment */
+@media (max-width: 600px) {
+    .btn {
+        width: 100%; /* Makes buttons full-width on small mobile screens */
+        box-sizing: border-box;
+    }
+}
+
+/* ==========================================================================
+   Back to Top Button
+   ========================================================================== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-5px);
+}
+
+/* ==========================================================================
+   Global Dark Mode Configuration (Front-End)
+   ========================================================================== */
+html.dark-theme {
+    --text-main: #94a3b8;
+    --heading-color: #f8fafc;
+    --bg-light: #1e293b;
+    --border-color: #334155;
+}
+
+html.dark-theme body {
+    background-color: #0f172a;
+}
+
+/* Force Dark Backgrounds on Main Containers */
+html.dark-theme .site-header,
+html.dark-theme .hero-section,
+html.dark-theme .about-hero,
+html.dark-theme .about-story-section,
+html.dark-theme .pricing-hero,
+html.dark-theme .services-hero,
+html.dark-theme .team-hero,
+html.dark-theme .contact-hero,
+html.dark-theme .audit-hero,
+html.dark-theme .blog-hero,
+html.dark-theme .single-post-wrapper,
+html.dark-theme .main-nav {
+    background-color: #0f172a !important;
+}
+
+/* Force Dark Backgrounds on Components & Cards */
+html.dark-theme .service-card,
+html.dark-theme .service-large-card,
+html.dark-theme .pricing-tier-card,
+html.dark-theme .value-card,
+html.dark-theme .process-step,
+html.dark-theme .team-card,
+html.dark-theme .info-meta-card,
+html.dark-theme .contact-form-card,
+html.dark-theme .audit-card,
+html.dark-theme .blog-card,
+html.dark-theme .accordion-header,
+html.dark-theme .accordion-content,
+html.dark-theme .floating-badge {
+    background-color: #1e293b !important;
+    border-color: #334155 !important;
+    color: var(--text-main);
+}
+
+/* Inverse Accent Colors for Tags and Icons */
+html.dark-theme .section-tag,
+html.dark-theme .meta-icon,
+html.dark-theme .service-icon-box,
+html.dark-theme .value-icon,
+html.dark-theme .blog-meta-tag,
+html.dark-theme .team-initials {
+    background-color: rgba(59, 130, 246, 0.15) !important;
+    color: #60a5fa !important;
+}

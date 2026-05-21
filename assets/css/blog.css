@@ -1,0 +1,461 @@
+/* ==========================================================================
+   Blog Directory & Single Post Styles (assets/css/blog.css)
+   ========================================================================== */
+
+/* ==========================================================================
+   Blog Directory Feed Layouts (blog.php)
+   ========================================================================== */
+.blog-hero {
+    background-color: #ffffff;
+    padding: 6rem 2rem 3rem;
+}
+
+.blog-empty-state {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.blog-empty-state i {
+    font-size: 3.5rem;
+    color: #94a3b8;
+    margin-bottom: 1rem;
+}
+
+.blog-empty-state h3 {
+    color: var(--heading-color);
+    font-size: 1.5rem;
+}
+
+.blog-section {
+    background-color: var(--bg-light);
+    border-top: 1px solid var(--border-color);
+}
+
+/* Clear 3-Column Content Feed Matrix */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.blog-card {
+    background: #ffffff;
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.blog-content {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Category Badging Elements */
+.blog-meta-tag {
+    display: inline-block;
+    align-self: flex-start;
+    background: #e0f2fe;
+    color: var(--primary);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+.blog-card-image {
+    margin-bottom: 1.5rem;
+}
+
+.blog-card-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.blog-title {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--heading-color);
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+}
+
+.blog-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.blog-title a:hover {
+    color: var(--primary);
+}
+
+.blog-card p {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1; /* Pushes the meta block and link evenly to the card baseline */
+}
+
+/* Inner Card Meta Details */
+.blog-details {
+    display: flex;
+    justify-content: space-between;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    font-weight: 500;
+}
+
+.blog-details span {
+    display: flex;
+    align-items: center;
+}
+
+.blog-readmore {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+.blog-readmore i {
+    font-size: 11px;
+    margin-left: 4px;
+}
+
+.blog-details i {
+    margin-right: 6px;
+}
+
+
+.blog-readmore:hover {
+    color: var(--primary-hover);
+}
+
+/* ==========================================================================
+   Single Post Reader Engine Typography (post.php)
+   ========================================================================== */
+.single-post-wrapper {
+    background-color: #ffffff;
+    padding: 6rem 2rem;
+}
+
+.post-error-icon {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.post-error-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+}
+
+.post-error-desc {
+    color: var(--text-main);
+    margin-bottom: 2rem;
+}
+
+.article-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.article-header {
+    margin-bottom: 3rem;
+    text-align: left;
+}
+
+.article-meta-tags {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.article-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--heading-color);
+    line-height: 1.2;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.5px;
+}
+
+.article-date-meta {
+    display: flex;
+    gap: 1.5rem;
+    color: #64748b;
+    font-size: 0.95rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.meta-icon-blue {
+    color: var(--primary);
+    margin-right: 6px;
+}
+
+.article-featured-image {
+    margin-bottom: 2rem;
+}
+
+.article-featured-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    object-fit: cover;
+    max-height: 420px;
+}
+
+.article-footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.back-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.back-link i {
+    font-size: 14px;
+}
+
+.related-articles-container {
+    max-width: 1200px;
+    margin-top: 5rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 4rem;
+}
+
+.related-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--heading-color);
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.related-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.pt-10 { padding-top: 2.5rem; }
+.pt-8 { padding-top: 2rem; }
+
+.related-tag {
+    align-self: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.single-post-wrapper .container {
+    max-width: 780px; /* Highly optimized structural container for seamless paragraph tracking readability */
+}
+
+.single-post-wrapper header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--heading-color);
+    line-height: 1.2;
+    margin: 0 0 1.5rem 0;
+    letter-spacing: -0.5px;
+}
+
+/* Long-Form Article Reading Content Constraints */
+.article-body-content {
+    color: #2d3748; /* Slightly softer charcoal black to reduce optical strain */
+    font-size: 1.15rem;
+    line-height: 1.85; /* Broad mathematical whitespace block to optimize reading pace */
+}
+
+.article-body-content p {
+    margin-top: 0;
+    margin-bottom: 1.75rem;
+}
+
+/* Core Formatting Support within nl2br Outputs */
+.article-body-content strong {
+    color: var(--heading-color);
+    font-weight: 700;
+}
+
+.article-body-content h2, 
+.article-body-content h3 {
+    color: var(--heading-color);
+    font-weight: 800;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.article-body-content h2 { font-size: 1.75rem; }
+.article-body-content h3 { font-size: 1.4rem; }
+
+/* Advanced Quill/Markdown Formatting Elements */
+.article-body-content ul,
+.article-body-content ol {
+    margin-top: 0;
+    margin-bottom: 1.75rem;
+    padding-left: 1.5rem;
+}
+
+.article-body-content li {
+    margin-bottom: 0.5rem;
+}
+
+.article-body-content blockquote {
+    border-left: 4px solid var(--primary);
+    padding: 1.5rem;
+    margin: 0 0 1.75rem 0;
+    font-style: italic;
+    color: #4b5563;
+    background: var(--bg-light);
+    border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.article-body-content pre {
+    background: var(--bg-dark);
+    color: #e2e8f0;
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    overflow-x: auto;
+    font-family: monospace;
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+}
+
+.article-body-content code {
+    background: var(--bg-light);
+    color: #e11d48;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.9em;
+}
+
+.article-body-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+.article-body-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.75rem;
+}
+
+.article-body-content th,
+.article-body-content td {
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    text-align: left;
+}
+
+.article-body-content th {
+    background: var(--bg-light);
+    font-weight: 700;
+    color: var(--heading-color);
+}
+
+/* System Return Navigation Anchors */
+.single-post-wrapper footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* System Alerts Fallback Framework */
+.alert-error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   Responsive Scaling Media Breakpoints
+   ========================================================================== */
+@media (max-width: 1024px) {
+    /* Safe layout collapses for small laptops and tablet views */
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-post-wrapper {
+        padding: 4rem 1.5rem;
+    }
+
+    .blog-hero {
+        padding: 4rem 1.5rem 2rem;
+    }
+
+    .blog-grid {
+        grid-template-columns: 1fr; /* Switch to stacked layout lists on phones */
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .single-post-wrapper header h1 {
+        font-size: 2.25rem;
+    }
+
+    .article-body-content {
+        font-size: 1.05rem;
+        line-height: 1.75;
+    }
+}
+
+/* ==========================================================================
+   Blog Dark Mode Overrides
+   ========================================================================== */
+html.dark-theme .article-body-content { color: #cbd5e1; }
+html.dark-theme .article-body-content blockquote { background: #1e293b; color: #cbd5e1; }
+html.dark-theme .article-body-content th { background: #1e293b; }
+html.dark-theme .blog-empty-state i { color: #475569; }
