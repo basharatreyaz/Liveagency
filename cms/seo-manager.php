@@ -31,6 +31,8 @@ try {
 
     // Handle incoming Form Submission Updates
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'update') {
+        require_csrf();
+        
         $slug = $_POST['page_slug'] ?? '';
         $title = trim($_POST['title'] ?? '');
         $description = trim($_POST['description'] ?? '');
@@ -89,6 +91,7 @@ $edit_slug = $_GET['edit'] ?? '';
                     <a href="seo-manager.php" class="btn btn-sm btn-secondary">Cancel & Go Back</a>
                 </div>
                 <form method="post" action="seo-manager.php?edit=<?php echo html_escape($edit_slug); ?>">
+                    <input type="hidden" name="csrf_token" value="<?php echo html_escape(get_csrf_token()); ?>">
                     <input type="hidden" name="action" value="update">
                     <input type="hidden" name="page_slug" value="<?php echo html_escape($edit_slug); ?>">
                     

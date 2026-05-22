@@ -18,14 +18,24 @@ $title = '';
 $experience = '';
 $image = '';
 $email = '';
+$details = '';
+$linkedin = '';
+$instagram = '';
+$facebook = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf();
+
     $name = trim($_POST['name'] ?? '');
     $title = trim($_POST['title'] ?? '');
     $experience = trim($_POST['experience'] ?? '');
     $image = trim($_POST['image'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    $details = trim($_POST['details'] ?? '');
+    $linkedin = trim($_POST['linkedin'] ?? '');
+    $instagram = trim($_POST['instagram'] ?? '');
+    $facebook = trim($_POST['facebook'] ?? '');
 
     if ($name === '' || $title === '') {
         $page_alert = 'Please provide at least a name and title for the team member.';
@@ -45,8 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-                $stmt = $pdo->prepare('INSERT INTO team_members (name, title, experience, image, email) VALUES (?, ?, ?, ?, ?)');
-                $stmt->execute([$name, $title, $experience, $image, $email]);
+                $stmt = $pdo->prepare('INSERT INTO team_members (name, title, experience, image, email, details, linkedin, instagram, facebook) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
+                $stmt->execute([$name, $title, $experience, $image, $email, $details, $linkedin, $instagram, $facebook]);
 
             // Automatically register them as a content Author as well
                 $stmt_author = $pdo->prepare('INSERT OR IGNORE INTO authors (name, email) VALUES (?, ?)');
@@ -83,6 +93,7 @@ include __DIR__ . '/includes/admin-header.php';
     <?php endif; ?>
 
     <form method="post" style="margin-top:1rem; display:grid; gap:1rem;">
+        <input type="hidden" name="csrf_token" value="<?php echo html_escape(get_csrf_token()); ?>">
         <div class="form-group">
             <label for="name">Full Name</label>
             <input type="text" id="name" name="name" value="<?php echo html_escape($name); ?>" required>
@@ -111,6 +122,26 @@ include __DIR__ . '/includes/admin-header.php';
         <div class="form-group">
             <label for="image">Image URL</label>
             <input type="url" id="image" name="image" value="<?php echo html_escape($image); ?>" placeholder="https://example.com/photo.jpg">
+        </div>
+
+        <div class="form-group">
+            <label for="details">Author Details / Bio</label>
+            <textarea id="details" name="details" rows="4" placeholder="Enter background details, skills, or biography..."><?php echo html_escape($details); ?></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="linkedin">LinkedIn URL (Optional)</label>
+            <input type="url" id="linkedin" name="linkedin" value="<?php echo html_escape($linkedin); ?>" placeholder="https://linkedin.com/in/username">
+        </div>
+
+        <div class="form-group">
+            <label for="instagram">Instagram URL (Optional)</label>
+            <input type="url" id="instagram" name="instagram" value="<?php echo html_escape($instagram); ?>" placeholder="https://instagram.com/username">
+        </div>
+
+        <div class="form-group">
+            <label for="facebook">Facebook URL (Optional)</label>
+            <input type="url" id="facebook" name="facebook" value="<?php echo html_escape($facebook); ?>" placeholder="https://facebook.com/username">
         </div>
 
         <div style="display:flex; gap:1rem;">

@@ -15,17 +15,12 @@ if ($id <= 0) {
 try {
     $pdo = get_pdo();
     
-    // Ensure email column exists
-    try {
-        $pdo->exec("ALTER TABLE team_members ADD COLUMN email TEXT DEFAULT ''");
-    } catch (Exception $e) {}
-
     // Dynamically verify if current user is the root admin
     $stmt_root = $pdo->query('SELECT id FROM users ORDER BY id ASC LIMIT 1');
     $root_id = $stmt_root->fetchColumn();
     $is_admin = (isset($_SESSION['admin_id']) && $_SESSION['admin_id'] == $root_id);
 
-    $stmt = $pdo->prepare('SELECT id, name, title, experience, image, email FROM team_members WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT id, name, title, experience, image, email, details, linkedin, instagram, facebook FROM team_members WHERE id = ?');
     $stmt->execute([$id]);
     $member = $stmt->fetch();
 } catch (Exception $e) {
@@ -41,14 +36,24 @@ $title = $member['title'];
 $experience = $member['experience'];
 $image = $member['image'];
 $email = $member['email'] ?? '';
+$details = $member['details'] ?? '';
+$linkedin = $member['linkedin'] ?? '';
+$instagram = $member['instagram'] ?? '';
+$facebook = $member['facebook'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf();
+
     $name = trim($_POST['name'] ?? '');
     $title = trim($_POST['title'] ?? '');
     $experience = trim($_POST['experience'] ?? '');
     $image = trim($_POST['image'] ?? '');
     $new_email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+    $details = trim($_POST['details'] ?? '');
+    $linkedin = trim($_POST['linkedin'] ?? '');
+    $instagram = trim($_POST['instagram'] ?? '');
+    $facebook = trim($_POST['facebook'] ?? '');
 
     if ($name === '' || $title === '') {
         $page_alert = 'Please provide at least a name and title.';
@@ -64,8 +69,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
 
-                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ?, email = ? WHERE id = ?');
-                $update->execute([$name, $title, $experience, $image, $new_email, $id]);
+                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ?, email = ?, details = ?, linkedin = ?, instagram = ?, facebook = ? WHERE id = ?');
+                $update->execute([$name, $title, $experience, $image, $new_email, $details, $linkedin, $instagram, $facebook, $id]);
 
                 if ($email !== '' && $new_email !== '' && strtolower($new_email) !== strtolower((string)$email)) {
                     $stmt_u = $pdo->prepare('UPDATE users SET username = ? WHERE LOWER(username) = LOWER(?)');
@@ -85,8 +90,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
             } else {
-                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ? WHERE id = ?');
-                $update->execute([$name, $title, $experience, $image, $id]);
+                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ?, details = ?, linkedin = ?, instagram = ?, facebook = ? WHERE id = ?');
+                $update->execute([$name, $title, $experience, $image, $details, $linkedin, $instagram, $facebook, $id]);
             }
             $_SESSION['admin_message'] = 'Team member updated.';
             cms_redirect('team-list.php');
@@ -105,6 +110,7 @@ include __DIR__ . '/includes/admin-header.php';
     <?php endif; ?>
 
     <form method="post" style="display:grid; gap:1rem;">
+        <input type="hidden" name="csrf_token" value="<?php echo html_escape(get_csrf_token()); ?>">
         <div class="form-group">
             <label for="name">Full Name</label>
             <input id="name" name="name" value="<?php echo html_escape($name); ?>" required>
@@ -131,6 +137,22 @@ include __DIR__ . '/includes/admin-header.php';
             <input type="password" id="password" name="password" placeholder="Leave blank to keep current password">
         </div>
         <?php endif; ?>
+        <div class="form-group">
+            <label for="details">Author Details / Bio</label>
+            <textarea id="details" name="details" rows="4"><?php echo html_escape($details); ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="linkedin">LinkedIn URL (Optional)</label>
+            <input type="url" id="linkedin" name="linkedin" value="<?php echo html_escape($linkedin); ?>" placeholder="https://linkedin.com/in/username">
+        </div>
+        <div class="form-group">
+            <label for="instagram">Instagram URL (Optional)</label>
+            <input type="url" id="instagram" name="instagram" value="<?php echo html_escape($instagram); ?>" placeholder="https://instagram.com/username">
+        </div>
+        <div class="form-group">
+            <label for="facebook">Facebook URL (Optional)</label>
+            <input type="url" id="facebook" name="facebook" value="<?php echo html_escape($facebook); ?>" placeholder="https://facebook.com/username">
+        </div>
         <div style="display:flex; gap:1rem;">
             <button class="btn btn-primary" type="submit">Save</button>
             <a class="btn btn-secondary" href="team-list.php">Cancel</a>

@@ -8,8 +8,12 @@ $script_dir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 $base_url = rtrim($protocol . '://' . $host . $script_dir, '/') . '/';
 
 // Default SEO Meta Tags
-$page_title_meta = 'WP Site Doctors - WordPress Maintenance & Support Agency';
-$page_description_meta = 'WP Site Doctors provides expert WordPress maintenance, reliable support, and optimization services for your agency or business.';
+if (!isset($page_title_meta)) {
+    $page_title_meta = 'WP Site Doctors - WordPress Maintenance & Support Agency';
+}
+if (!isset($page_description_meta)) {
+    $page_description_meta = 'WP Site Doctors provides expert WordPress maintenance, reliable support, and optimization services for your agency or business.';
+}
 
 // Fetch custom SEO meta tags from the database based on the current active page
 $current_page = basename($_SERVER['SCRIPT_NAME'], '.php');

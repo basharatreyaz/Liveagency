@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿<?php
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<?php
 require_once __DIR__ . '/../config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -20,6 +20,8 @@ $featured_image = '';
 $category = '';
 $author = '';
 $status = 'published';
+$meta_title = '';
+$meta_description = '';
 
 $categories = [];
 $authors = [];
@@ -32,14 +34,22 @@ try {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_csrf();
+
     $title = trim($_POST['title'] ?? '');
     $slug = trim($_POST['slug'] ?? '');
     $excerpt = trim($_POST['excerpt'] ?? '');
-    $content = trim($_POST['content'] ?? '');
+    
+    // Basic sanitization. For production, strongly consider installing HTMLPurifier via Composer.
+    $allowed_tags = '<h1><h2><h3><h4><h5><h6><p><br><a><ul><ol><li><strong><b><em><i><blockquote><code><pre><img><hr><table><thead><tbody><tr><th><td>';
+    $content = strip_tags(trim($_POST['content'] ?? ''), $allowed_tags);
+    
     $featured_image = trim($_POST['featured_image'] ?? '');
     $category = trim($_POST['category'] ?? '');
     $author = trim($_POST['author'] ?? '');
     $status = trim($_POST['status'] ?? 'published');
+    $meta_title = trim($_POST['meta_title'] ?? '');
+    $meta_description = trim($_POST['meta_description'] ?? '');
 
     if ($title === '' || $excerpt === '' || $content === '' || $category === '' || $author === '') {
         $page_alert = 'Please fill in a title, excerpt, content, category, and author before saving.';
@@ -51,8 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         try {
             $pdo = get_pdo();
-            $stmt = $pdo->prepare('INSERT INTO posts (title, slug, excerpt, content, featured_image, category, author, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)');
-            $stmt->execute([$title, $slug, $excerpt, $content, $featured_image, $category, $author, $status]);
+            $stmt = $pdo->prepare('INSERT INTO posts (title, slug, excerpt, content, featured_image, category, author, status, meta_title, meta_description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+            $stmt->execute([$title, $slug, $excerpt, $content, $featured_image, $category, $author, $status, $meta_title, $meta_description]);
 
             $_SESSION['admin_message'] = 'Post successfully created.';
             cms_redirect('admin-dashboard.php');
@@ -66,6 +76,7 @@ include __DIR__ . '/includes/admin-header.php';
 ?>
 <div class="card">
     <form method="post" class="form-grid">
+        <input type="hidden" name="csrf_token" value="<?php echo html_escape(get_csrf_token()); ?>">
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" value="<?php echo html_escape($title); ?>" required>
@@ -111,6 +122,14 @@ include __DIR__ . '/includes/admin-header.php';
                 <option value="published" <?php echo $status === 'published' ? 'selected' : ''; ?>>Published</option>
                 <option value="draft" <?php echo $status === 'draft' ? 'selected' : ''; ?>>Draft</option>
             </select>
+        </div>
+        <div class="form-group">
+            <label for="meta_title">Meta Title (SEO)</label>
+            <input type="text" id="meta_title" name="meta_title" value="<?php echo html_escape($meta_title); ?>" placeholder="Leave blank to default to post title">
+        </div>
+        <div class="form-group">
+            <label for="meta_description">Meta Description (SEO)</label>
+            <textarea id="meta_description" name="meta_description" rows="3" placeholder="Leave blank to default to post excerpt"><?php echo html_escape($meta_description); ?></textarea>
         </div>
         <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem;">
             <button type="submit" class="btn btn-primary">Save Post</button>

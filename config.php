@@ -1,4 +1,4 @@
-﻿﻿<?php
+﻿﻿﻿﻿﻿﻿<?php
 
 define('DB_FILE', __DIR__ . '/cms/data/wpsitedoctors.db');
 
@@ -21,6 +21,18 @@ function ensure_posts_schema(PDO $pdo) {
     if (!in_array('author', $columns, true)) {
         $pdo->exec("ALTER TABLE posts ADD COLUMN author TEXT DEFAULT 'Admin'");
     }
+
+    if (!in_array('status', $columns, true)) {
+        $pdo->exec("ALTER TABLE posts ADD COLUMN status TEXT DEFAULT 'published'");
+    }
+
+    if (!in_array('meta_title', $columns, true)) {
+        $pdo->exec("ALTER TABLE posts ADD COLUMN meta_title TEXT DEFAULT ''");
+    }
+
+    if (!in_array('meta_description', $columns, true)) {
+        $pdo->exec("ALTER TABLE posts ADD COLUMN meta_description TEXT DEFAULT ''");
+    }
 }
 
 function ensure_manager_schema(PDO $pdo) {
@@ -32,6 +44,14 @@ function ensure_manager_schema(PDO $pdo) {
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL UNIQUE
     )");
+
+    $rows = $pdo->query('PRAGMA table_info(authors)')->fetchAll(PDO::FETCH_ASSOC);
+    if (!empty($rows)) {
+        $columns = array_map('strtolower', array_column($rows, 'name'));
+        if (!in_array('email', $columns, true)) {
+            $pdo->exec("ALTER TABLE authors ADD COLUMN email TEXT DEFAULT ''");
+        }
+    }
 }
 
 function ensure_seo_schema(PDO $pdo) {
@@ -52,6 +72,26 @@ function ensure_team_schema(PDO $pdo) {
         image TEXT DEFAULT '',
         created_at DATETIME DEFAULT (datetime('now'))
     )");
+
+    $rows = $pdo->query('PRAGMA table_info(team_members)')->fetchAll(PDO::FETCH_ASSOC);
+    if (!empty($rows)) {
+        $columns = array_map('strtolower', array_column($rows, 'name'));
+        if (!in_array('email', $columns, true)) {
+            $pdo->exec("ALTER TABLE team_members ADD COLUMN email TEXT DEFAULT ''");
+        }
+        if (!in_array('details', $columns, true)) {
+            $pdo->exec("ALTER TABLE team_members ADD COLUMN details TEXT DEFAULT ''");
+        }
+        if (!in_array('linkedin', $columns, true)) {
+            $pdo->exec("ALTER TABLE team_members ADD COLUMN linkedin TEXT DEFAULT ''");
+        }
+        if (!in_array('instagram', $columns, true)) {
+            $pdo->exec("ALTER TABLE team_members ADD COLUMN instagram TEXT DEFAULT ''");
+        }
+        if (!in_array('facebook', $columns, true)) {
+            $pdo->exec("ALTER TABLE team_members ADD COLUMN facebook TEXT DEFAULT ''");
+        }
+    }
 }
 
 function get_pdo() {
@@ -97,6 +137,28 @@ function is_admin_user() {
         return $is_admin = ($_SESSION['admin_id'] == $root_id);
     } catch (Exception $e) {
         return $is_admin = false;
+    }
+}
+
+function get_csrf_token() {
+    ensure_session();
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function verify_csrf_token($token) {
+    ensure_session();
+    return hash_equals($_SESSION['csrf_token'] ?? '', (string)$token);
+}
+
+function require_csrf() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $token = $_POST['csrf_token'] ?? '';
+        if (!verify_csrf_token($token)) {
+            die('Security Error: CSRF token validation failed. Please return to the previous page and try again.');
+        }
     }
 }
 

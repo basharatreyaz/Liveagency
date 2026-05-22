@@ -1,6 +1,5 @@
 <?php
 require_once 'config.php';
-require_once 'includes/header.php';
 
 $db_file = DB_FILE;
 $post = null;
@@ -12,7 +11,7 @@ if (file_exists($db_file) && !empty($slug)) {
         $pdo = get_pdo();
 
         // Query entry data point securely via prepared parameter bindings
-        $stmt = $pdo->prepare('SELECT title, content, category, author, featured_image, created_at FROM posts WHERE slug = ? AND status = "published"');
+        $stmt = $pdo->prepare('SELECT title, content, category, author, featured_image, created_at, excerpt, meta_title, meta_description FROM posts WHERE slug = ? AND status = "published"');
         $stmt->execute([$slug]);
         $post = $stmt->fetch();
 
@@ -33,6 +32,12 @@ if (!$post) {
     include '404.php';
     exit;
 }
+
+// Set custom SEO tags for the post, falling back to title/excerpt if empty
+$page_title_meta = !empty($post['meta_title']) ? $post['meta_title'] : $post['title'];
+$page_description_meta = !empty($post['meta_description']) ? $post['meta_description'] : $post['excerpt'];
+
+require_once 'includes/header.php';
 ?>
 
 <link rel="stylesheet" href="assets/css/blog.css">
@@ -44,8 +49,8 @@ if (!$post) {
         <!-- Header Section Meta Tracks -->
         <header class="article-header">
             <div class="article-meta-tags">
-                <span class="section-tag mb-0"><?php echo htmlspecialchars($post['category']); ?></span>
-                <span class="section-tag mb-0"><i class="fa-regular fa-user meta-icon"></i> By <?php echo htmlspecialchars($post['author']); ?></span>
+                <span class="section-tag mb-0" style="text-transform: none;"><?php echo htmlspecialchars(ucwords(strtolower($post['category']))); ?></span>
+                <span class="section-tag mb-0" style="text-transform: none;"><i class="fa-regular fa-user meta-icon"></i> By <?php echo htmlspecialchars(ucwords(strtolower($post['author']))); ?></span>
             </div>
             <h1 class="article-title">
                 <?php echo htmlspecialchars($post['title']); ?>
@@ -70,7 +75,7 @@ if (!$post) {
 
         <!-- Footer Structural Return Path Link -->
         <footer class="article-footer">
-            <a href="blog" class="back-link">
+            <a href="blog.php" class="back-link">
                 <i class="fa-solid fa-arrow-left"></i> Back to Article Feed Directory
             </a>
         </footer>
@@ -87,7 +92,7 @@ if (!$post) {
                     <img src="<?php echo htmlspecialchars($r_post['featured_image']); ?>" alt="<?php echo htmlspecialchars($r_post['title']); ?>" class="related-img">
                     <?php endif; ?>
                     <div class="blog-content <?php echo empty($r_post['featured_image']) ? 'pt-10' : 'pt-8'; ?>">
-                        <span class="section-tag related-tag"><?php echo htmlspecialchars($r_post['category']); ?></span>
+                        <span class="section-tag related-tag" style="text-transform: none;"><?php echo htmlspecialchars(ucwords(strtolower($r_post['category']))); ?></span>
                         <h3 class="blog-title">
                             <a href="<?php echo htmlspecialchars($r_post['slug']); ?>">
                                 <?php echo htmlspecialchars($r_post['title']); ?>
@@ -100,7 +105,7 @@ if (!$post) {
                             <span><i class="fa-regular fa-calendar meta-icon"></i> <?php echo date('M d, Y', strtotime($r_post['created_at'])); ?></span>
                         </div>
                         <a href="<?php echo htmlspecialchars($r_post['slug']); ?>" class="blog-readmore">
-                            Read Full Report <i class="fa-solid fa-arrow-right"></i>
+                            Read more <i class="fa-solid fa-arrow-right"></i>
                         </a>
                     </div>
                 </article>

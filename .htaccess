@@ -1,6 +1,8 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /
+
+# Set the RewriteBase to your local WAMP subfolder. Change this to / on your live production server.
+RewriteBase /wpsitedoctors/
 
 # 1. Block direct browser access to SQLite Database files (Critical Security)
 <FilesMatch "\.db$">

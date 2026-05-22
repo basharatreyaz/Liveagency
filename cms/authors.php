@@ -14,17 +14,14 @@ $authors = [];
 try {
     $pdo = get_pdo();
 
-    // Ensure email column exists for authors
-    try {
-        $pdo->exec("ALTER TABLE authors ADD COLUMN email TEXT DEFAULT ''");
-    } catch (Exception $e) {}
-
     // Dynamically verify if current user is the root admin by checking the lowest ID
     $stmt_root = $pdo->query('SELECT id FROM users ORDER BY id ASC LIMIT 1');
     $root_id = $stmt_root->fetchColumn();
     $is_admin = (isset($_SESSION['admin_id']) && $_SESSION['admin_id'] == $root_id);
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        require_csrf();
+
         $action = $_POST['action'] ?? '';
         $name = trim($_POST['name'] ?? '');
         $email = trim($_POST['email'] ?? '');
@@ -155,6 +152,7 @@ try {
             <div class="admin-card">
                 <h2><?php echo $edit_author ? 'Edit Author' : 'Add Author'; ?></h2>
                 <form method="post" action="authors.php">
+                    <input type="hidden" name="csrf_token" value="<?php echo html_escape(get_csrf_token()); ?>">
                     <input type="hidden" name="action" value="<?php echo $edit_author ? 'edit' : 'add'; ?>">
                     <?php if ($edit_author): ?>
                         <input type="hidden" name="id" value="<?php echo (int)$edit_author['id']; ?>">
@@ -199,6 +197,7 @@ try {
                                     <td>
                                         <a class="btn btn-sm" href="authors.php?edit=<?php echo (int)$author['id']; ?>">Edit</a>
                                         <form method="post" action="authors.php" style="display:inline-block; margin:0;">
+                                            <input type="hidden" name="csrf_token" value="<?php echo html_escape(get_csrf_token()); ?>">
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="id" value="<?php echo (int)$author['id']; ?>">
                                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this author?');">Delete</button>

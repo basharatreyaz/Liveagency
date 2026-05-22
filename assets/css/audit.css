@@ -6,6 +6,7 @@
 .audit-hero {
     background-color: #ffffff;
     padding: 6rem 2rem 3rem;
+    height: auto;
 }
 
 /* --- Audit Section & Container --- */

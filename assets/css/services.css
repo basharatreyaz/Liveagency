@@ -6,6 +6,7 @@
 .services-hero {
     background-color: #ffffff;
     padding: 6rem 2rem 3rem;
+    height: auto;
 }
 
 .text-center {
@@ -106,7 +107,7 @@
         grid-template-columns: 1fr; /* Switch into stacked column format on mobile/tablet viewports */
         gap: 2rem;
     }
-
+er
     .service-large-card {
         padding: 2rem;
     }

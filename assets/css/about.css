@@ -28,6 +28,7 @@ section {
 .about-hero {
     background-color: #ffffff;
     padding: 6rem 2rem 3rem;
+    height: auto;
 }
 
 /* --- Brand Story Section --- */

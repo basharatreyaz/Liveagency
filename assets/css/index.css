@@ -8,6 +8,7 @@
 .hero-section {
     background-color: #ffffff;
     padding: 6rem 2rem 3rem;
+    height: auto;
 }
 
 .hero-grid {

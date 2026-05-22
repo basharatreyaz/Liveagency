@@ -8,6 +8,7 @@
 .blog-hero {
     background-color: #ffffff;
     padding: 6rem 2rem 3rem;
+    height: auto;
 }
 
 .blog-empty-state {
@@ -289,7 +290,7 @@
     margin-bottom: 1.25rem;
 }
 
-.single-post-wrapper .container {
+.single-post-wrapper .article-container {
     max-width: 780px; /* Highly optimized structural container for seamless paragraph tracking readability */
 }
 

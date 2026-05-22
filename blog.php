@@ -76,7 +76,7 @@ if (file_exists($db_file)) {
                                 <span><i class="fa-regular fa-user"></i> <?php echo htmlspecialchars($post['author']); ?></span>
                             </div>
                             <a href="<?php echo htmlspecialchars($post['slug']); ?>" class="blog-readmore">
-                                Read Full Report <i class="fa-solid fa-arrow-right"></i>
+                                Read more <i class="fa-solid fa-arrow-right"></i>
                             </a>
                         </div>
                     </article>
