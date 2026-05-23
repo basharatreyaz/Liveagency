@@ -5,7 +5,7 @@ require_once 'includes/header.php';
 $members = [];
 try {
 	$pdo = get_pdo();
-	$members = $pdo->query('SELECT id, name, title, experience, image, details, linkedin, instagram, facebook FROM team_members ORDER BY created_at DESC')->fetchAll();
+	$members = $pdo->query('SELECT id, name, title, experience, image, details, linkedin, instagram, facebook, display_order FROM team_members ORDER BY display_order ASC, created_at DESC')->fetchAll();
 } catch (Exception $e) {
 	// silently continue with empty members
 }

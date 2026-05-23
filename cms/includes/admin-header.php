@@ -1,4 +1,4 @@
-﻿﻿﻿﻿<?php
+﻿﻿<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -17,7 +17,8 @@ $base_url = rtrim($protocol . '://' . $host . $script_dir, '/') . '/';
     <base href="<?php echo $base_url; ?>">
     <title><?php echo isset($page_title) ? html_escape($page_title) : 'CMS Administration'; ?></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Outfit:400,500,600,700,800,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/admin.css?v=<?php echo time(); ?>">
     <script>
         // Prevent FOUC for dark mode by applying it instantly before body loads
@@ -68,6 +69,7 @@ $base_url = rtrim($protocol . '://' . $host . $script_dir, '/') . '/';
                 <a href="authors.php"><i class="fa-solid fa-user-pen"></i> Authors</a>
                 <a href="team-list.php"><i class="fa-solid fa-users"></i> Team Members</a>
                 <a href="seo-manager.php"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Manager</a>
+                <a href="backups.php"><i class="fa-solid fa-database"></i> Backups</a>
             <?php endif; ?>
             <a href="../blog"><i class="fa-solid fa-newspaper"></i> View Blog</a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>

@@ -17,4 +17,30 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.remove('active');
         }
     });
+
+    // Search Modal Logic
+    const searchModal = document.getElementById('search-modal');
+    const searchToggleBtns = document.querySelectorAll('.search-toggle-btn');
+    const closeSearchBtn = document.getElementById('close-search');
+    const searchInput = document.getElementById('modal-search-input');
+    const searchOverlay = document.querySelector('.search-modal-overlay');
+
+    if (searchModal) {
+        searchToggleBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                searchModal.classList.add('active');
+                setTimeout(() => searchInput.focus(), 100);
+            });
+        });
+
+        const closeSearch = () => searchModal.classList.remove('active');
+
+        closeSearchBtn.addEventListener('click', closeSearch);
+        searchOverlay.addEventListener('click', closeSearch);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchModal.classList.contains('active')) closeSearch();
+        });
+    }
 });

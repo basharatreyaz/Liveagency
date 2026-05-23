@@ -22,6 +22,7 @@ $details = '';
 $linkedin = '';
 $instagram = '';
 $facebook = '';
+$display_order = 0;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_csrf();
@@ -36,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $linkedin = trim($_POST['linkedin'] ?? '');
     $instagram = trim($_POST['instagram'] ?? '');
     $facebook = trim($_POST['facebook'] ?? '');
+    $display_order = (int)($_POST['display_order'] ?? 0);
 
     if ($name === '' || $title === '') {
         $page_alert = 'Please provide at least a name and title for the team member.';
@@ -55,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             }
 
-                $stmt = $pdo->prepare('INSERT INTO team_members (name, title, experience, image, email, details, linkedin, instagram, facebook) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)');
-                $stmt->execute([$name, $title, $experience, $image, $email, $details, $linkedin, $instagram, $facebook]);
+                $stmt = $pdo->prepare('INSERT INTO team_members (name, title, experience, image, email, details, linkedin, instagram, facebook, display_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+                $stmt->execute([$name, $title, $experience, $image, $email, $details, $linkedin, $instagram, $facebook, $display_order]);
 
             // Automatically register them as a content Author as well
                 $stmt_author = $pdo->prepare('INSERT OR IGNORE INTO authors (name, email) VALUES (?, ?)');
@@ -102,6 +104,11 @@ include __DIR__ . '/includes/admin-header.php';
         <div class="form-group">
             <label for="title">Title</label>
             <input type="text" id="title" name="title" value="<?php echo html_escape($title); ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="display_order">Display Order</label>
+            <input type="number" id="display_order" name="display_order" value="<?php echo html_escape((string)$display_order); ?>" placeholder="0 (Lower numbers appear first)">
         </div>
 
         <div class="form-group">

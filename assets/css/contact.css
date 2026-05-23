@@ -7,7 +7,7 @@
    ========================================================================== */
 .contact-hero {
     background-color: #ffffff;
-    padding: 6rem 2rem 3rem;
+    padding: 3rem 2rem 3rem;
     height: auto;
 }
 
@@ -108,6 +108,6 @@
 
 @media (max-width: 768px) {
     .contact-hero {
-        padding: 4rem 1.5rem 2rem;
+        padding: 2rem 1.5rem 2rem;
     }
 }

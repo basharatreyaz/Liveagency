@@ -87,14 +87,14 @@ require_once 'includes/header.php';
             <div class="stat-item">
                 <div class="stat-icon"><i class="fa-solid fa-earth-americas"></i></div>
                 <div>
-                    <div class="stat-number" data-target="20000" data-suffix="+">0</div>
+                    <div class="stat-number" data-target="1500" data-suffix="+">0</div>
                     <div class="stat-label">Websites Maintained</div>
                 </div>
             </div>
             <div class="stat-item">
                 <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
                 <div>
-                    <div class="stat-number" data-target="8" data-suffix="+">0</div>
+                    <div class="stat-number" data-target="3" data-suffix="+">0</div>
                     <div class="stat-label">Years of WordPress Expertise</div>
                 </div>
             </div>

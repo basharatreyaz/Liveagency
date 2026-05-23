@@ -40,17 +40,16 @@ try {
 
     <title><?php echo html_escape($page_title_meta); ?></title>
     <meta name="description" content="<?php echo html_escape($page_description_meta); ?>">
-    <!-- link favion -->
-    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
+    <!-- Favicon -->
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <!-- Bunny Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=Outfit:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+   
     <!-- Core CSS -->
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/header.css">
-    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/header.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/footer.css?v=<?php echo time(); ?>">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -98,6 +97,7 @@ try {
 
             <!-- Mobile Controls -->
             <div class="mobile-controls">
+                <button aria-label="Open Search" class="search-toggle-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 <button aria-label="Toggle Dark Mode" class="theme-toggle-btn" style="background:none; border:none; color:var(--heading-color); cursor:pointer; font-size:1.25rem;"><i class="fa-solid fa-moon"></i></button>
                 <button class="hamburger" id="mobile-menu-btn" aria-label="Toggle navigation">
                     <span class="bar"></span>
@@ -117,18 +117,28 @@ try {
                     <li><a href="blog">Blog</a></li>
                     <li><a href="contact">Contact</a></li>
                 </ul>
-                <!-- Move CTA into the nav for mobile screens -->
-                <!-- <div class="header-cta mobile-cta">
-                    <a href="quote.php" class="btn btn-primary">Get a Quote</a>
-                </div> -->
             </nav>
 
             <!-- Desktop Call to Action -->
             <div class="header-cta desktop-cta">
+                <button aria-label="Open Search" class="search-toggle-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
                 <button aria-label="Toggle Dark Mode" class="theme-toggle-btn" style="background:none; border:none; color:var(--heading-color); cursor:pointer; font-size:1.25rem;"><i class="fa-solid fa-moon"></i></button>
                 <a href="quote" class="btn btn-primary">Get a Quote</a>
             </div>
             
+        </div>
+
+        <!-- Full Screen Search Modal -->
+        <div id="search-modal" class="search-modal">
+            <div class="search-modal-overlay"></div>
+            <div class="search-modal-content">
+                <button id="close-search" class="close-search-btn" aria-label="Close Search"><i class="fa-solid fa-xmark"></i></button>
+                <h3 style="margin-top:0; margin-bottom:1.5rem; color:var(--heading-color);">Search Our Blog</h3>
+                <form action="blog" method="GET" class="modal-search-form">
+                    <input type="text" name="q" id="modal-search-input" placeholder="What are you looking for?" value="<?php echo isset($_GET['q']) ? html_escape($_GET['q']) : ''; ?>" required>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
         </div>
     </header>
 

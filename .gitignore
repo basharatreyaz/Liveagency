@@ -1,3 +1,2 @@
-# Ignore SQLite database files to prevent overriding production data
-/cms/data/wpsitedoctors.db
-/cms/data/*.db
+.htaccess
+cms/data/

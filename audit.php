@@ -3,7 +3,7 @@
 require_once 'includes/header.php'; 
 ?>
 
-<link rel="stylesheet" href="assets/css/audit.css">
+<link rel="stylesheet" href="assets/css/audit.css?v=<?php echo time(); ?>">
 
 <!-- Audit Hero Section -->
 <section class="audit-hero">

@@ -5,7 +5,7 @@
 /* --- Hero Section --- */
 .services-hero {
     background-color: #ffffff;
-    padding: 6rem 2rem 3rem;
+    padding: 3rem 2rem 3rem;
     height: auto;
 }
 
@@ -107,8 +107,13 @@
         grid-template-columns: 1fr; /* Switch into stacked column format on mobile/tablet viewports */
         gap: 2rem;
     }
-er
     .service-large-card {
         padding: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .services-hero {
+        padding: 2rem 1.5rem 2rem;
     }
 }

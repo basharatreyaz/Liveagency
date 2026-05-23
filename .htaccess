@@ -1,32 +1,29 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-
-# Set the RewriteBase to your local WAMP subfolder. Change this to / on your live production server.
-RewriteBase /wpsitedoctors/
-
-# 1. Block direct browser access to SQLite Database files (Critical Security)
-<FilesMatch "\.db$">
+# Block access to database files
+<FilesMatch "\.(db|sqlite|sqlite3)$">
     Require all denied
 </FilesMatch>
 
-# 2. Disable MultiViews to prevent Apache from resolving partial paths
-# Options -MultiViews
+<IfModule mod_rewrite.c>
+    RewriteEngine On
 
-# 3. Set explicit 404 Error Document fallback
-ErrorDocument 404 /404.php
+    # Change to "/" if the site is installed in the domain root
+    RewriteBase /
 
-# 4. Route sitemap.xml to our dynamic PHP generator
-RewriteRule ^sitemap\.xml$ sitemap.php [L]
+    # Sitemap
+    RewriteRule ^sitemap\.xml$ sitemap.php [L]
 
-# 5. If the requested URL is an exact file or directory, serve it normally
-RewriteCond %{REQUEST_FILENAME} -d [OR]
-RewriteCond %{REQUEST_FILENAME} -f
-RewriteRule ^ - [L]
+    # Serve existing files and directories directly
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
 
-# 6. If the URL matches a PHP file, append .php (e.g., /team -> team.php)
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php [L]
+    # Remove .php extension from URLs
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^([^/]+)/?$ $1.php [L]
 
-# 7. Route all other non-existent requests to the blog post engine to check for slugs
-RewriteRule ^(.*)$ post.php?slug=$1 [QSA,L]
+    # Route all other requests to post.php
+    RewriteRule ^(.+?)/?$ post.php?slug=$1 [QSA,L]
 </IfModule>
+
+# Custom 404 page
+ErrorDocument 404 /404.php

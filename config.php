@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿<?php
+﻿﻿<?php
 
 define('DB_FILE', __DIR__ . '/cms/data/wpsitedoctors.db');
 
@@ -90,6 +90,9 @@ function ensure_team_schema(PDO $pdo) {
         }
         if (!in_array('facebook', $columns, true)) {
             $pdo->exec("ALTER TABLE team_members ADD COLUMN facebook TEXT DEFAULT ''");
+        }
+        if (!in_array('display_order', $columns, true)) {
+            $pdo->exec("ALTER TABLE team_members ADD COLUMN display_order INTEGER DEFAULT 0");
         }
     }
 }

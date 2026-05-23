@@ -23,6 +23,9 @@ a { color: inherit; text-decoration: none; }
 .btn-primary { background: #0b72d0; color: #ffffff; }
 .btn-secondary { background: #e2e8f0; color: #0f172a; }
 .btn:hover { transform: translateY(-1px); }
+.btn-sm { padding: .5rem .85rem; font-size: .85rem; border-radius: .5rem; }
+.btn-danger { background: #ef4444; color: #ffffff; }
+.btn-success { background: #10b981; color: #ffffff; }
 .table-wrapper { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
 thead { background: #f1f5f9; }
@@ -79,3 +82,5 @@ html.dark-theme .admin-menu-toggle { color: #f8fafc; }
 html.dark-theme .status-draft { background: #0f172a; color: #cbd5e1; border-color: #475569; }
 html.dark-theme .status-published { background: #064e3b; color: #6ee7b7; }
 html.dark-theme .alert { background: #172554; border-color: #3b82f6; color: #bfdbfe; }
+html.dark-theme .btn-danger { background: #991b1b; color: #f8fafc; }
+html.dark-theme .btn-success { background: #059669; color: #f8fafc; }

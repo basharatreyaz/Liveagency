@@ -10,7 +10,7 @@ $page_alert = '';
 
 try {
     $pdo = get_pdo();
-    $members = $pdo->query('SELECT id, name, title, experience, image, created_at FROM team_members ORDER BY created_at DESC')->fetchAll();
+    $members = $pdo->query('SELECT id, name, title, experience, image, display_order, created_at FROM team_members ORDER BY display_order ASC, created_at DESC')->fetchAll();
 } catch (Exception $e) {
     $members = [];
     $page_alert = 'Unable to load team members: ' . html_escape($e->getMessage());
@@ -40,6 +40,7 @@ include __DIR__ . '/includes/admin-header.php';
                 <tr>
                     <th>Name</th>
                     <th>Title</th>
+                    <th>Order</th>
                     <th>Experience</th>
                     <th>Added</th>
                     <th>Actions</th>
@@ -47,12 +48,13 @@ include __DIR__ . '/includes/admin-header.php';
             </thead>
             <tbody>
                 <?php if (empty($members)): ?>
-                    <tr><td colspan="5" style="text-align:center; padding:2rem; color:#64748b;">No team members yet.</td></tr>
+                    <tr><td colspan="6" style="text-align:center; padding:2rem; color:#64748b;">No team members yet.</td></tr>
                 <?php else: ?>
                     <?php foreach ($members as $m): ?>
                         <tr>
                             <td><?php echo html_escape($m['name']); ?></td>
                             <td><?php echo html_escape($m['title']); ?></td>
+                            <td><?php echo (int)$m['display_order']; ?></td>
                             <td><?php echo html_escape($m['experience']); ?></td>
                             <td><?php echo date('M d, Y', strtotime($m['created_at'])); ?></td>
                             <td class="action-links">

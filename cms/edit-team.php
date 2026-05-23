@@ -20,7 +20,7 @@ try {
     $root_id = $stmt_root->fetchColumn();
     $is_admin = (isset($_SESSION['admin_id']) && $_SESSION['admin_id'] == $root_id);
 
-    $stmt = $pdo->prepare('SELECT id, name, title, experience, image, email, details, linkedin, instagram, facebook FROM team_members WHERE id = ?');
+    $stmt = $pdo->prepare('SELECT id, name, title, experience, image, email, details, linkedin, instagram, facebook, display_order FROM team_members WHERE id = ?');
     $stmt->execute([$id]);
     $member = $stmt->fetch();
 } catch (Exception $e) {
@@ -40,6 +40,7 @@ $details = $member['details'] ?? '';
 $linkedin = $member['linkedin'] ?? '';
 $instagram = $member['instagram'] ?? '';
 $facebook = $member['facebook'] ?? '';
+$display_order = (int)($member['display_order'] ?? 0);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     require_csrf();
@@ -54,6 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $linkedin = trim($_POST['linkedin'] ?? '');
     $instagram = trim($_POST['instagram'] ?? '');
     $facebook = trim($_POST['facebook'] ?? '');
+    $display_order = (int)($_POST['display_order'] ?? 0);
 
     if ($name === '' || $title === '') {
         $page_alert = 'Please provide at least a name and title.';
@@ -69,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
 
-                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ?, email = ?, details = ?, linkedin = ?, instagram = ?, facebook = ? WHERE id = ?');
-                $update->execute([$name, $title, $experience, $image, $new_email, $details, $linkedin, $instagram, $facebook, $id]);
+                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ?, email = ?, details = ?, linkedin = ?, instagram = ?, facebook = ?, display_order = ? WHERE id = ?');
+                $update->execute([$name, $title, $experience, $image, $new_email, $details, $linkedin, $instagram, $facebook, $display_order, $id]);
 
                 if ($email !== '' && $new_email !== '' && strtolower($new_email) !== strtolower((string)$email)) {
                     $stmt_u = $pdo->prepare('UPDATE users SET username = ? WHERE LOWER(username) = LOWER(?)');
@@ -90,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     }
                 }
             } else {
-                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ?, details = ?, linkedin = ?, instagram = ?, facebook = ? WHERE id = ?');
-                $update->execute([$name, $title, $experience, $image, $details, $linkedin, $instagram, $facebook, $id]);
+                $update = $pdo->prepare('UPDATE team_members SET name = ?, title = ?, experience = ?, image = ?, details = ?, linkedin = ?, instagram = ?, facebook = ?, display_order = ? WHERE id = ?');
+                $update->execute([$name, $title, $experience, $image, $details, $linkedin, $instagram, $facebook, $display_order, $id]);
             }
             $_SESSION['admin_message'] = 'Team member updated.';
             cms_redirect('team-list.php');
@@ -118,6 +120,10 @@ include __DIR__ . '/includes/admin-header.php';
         <div class="form-group">
             <label for="title">Title</label>
             <input id="title" name="title" value="<?php echo html_escape($title); ?>" required>
+        </div>
+        <div class="form-group">
+            <label for="display_order">Display Order</label>
+            <input type="number" id="display_order" name="display_order" value="<?php echo html_escape((string)$display_order); ?>" placeholder="0 (Lower numbers appear first)">
         </div>
         <div class="form-group">
             <label for="experience">Experience</label>

@@ -98,9 +98,9 @@ require_once 'includes/header.php';
                                 <?php echo htmlspecialchars($r_post['title']); ?>
                             </a>
                         </h3>
-                        <p>
+                        <!-- <p>
                             <?php echo htmlspecialchars($r_post['excerpt']); ?>
-                        </p>
+                        </p> -->
                         <div class="blog-details">
                             <span><i class="fa-regular fa-calendar meta-icon"></i> <?php echo date('M d, Y', strtotime($r_post['created_at'])); ?></span>
                         </div>
