@@ -47,9 +47,9 @@ try {
     <link href="https://fonts.bunny.net/css?family=Outfit:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
    
     <!-- Core CSS -->
-    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="assets/css/header.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" href="assets/css/footer.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="assets/css/style.css?v=<?php echo filemtime(__DIR__ . '/../assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="assets/css/header.css?v=<?php echo filemtime(__DIR__ . '/../assets/css/header.css'); ?>">
+    <link rel="stylesheet" href="assets/css/footer.css?v=<?php echo filemtime(__DIR__ . '/../assets/css/footer.css'); ?>">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -62,6 +62,9 @@ try {
         }
         
         document.addEventListener('DOMContentLoaded', function() {
+            if (window.__themeToggleBound) return;
+            window.__themeToggleBound = true;
+
             const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
             const htmlEl = document.documentElement;
             
@@ -109,13 +112,13 @@ try {
             <!-- Primary Navigation -->
             <nav class="main-nav" id="primary-nav">
                 <ul>
-                    <li><a href="./">Home</a></li>
-                    <li><a href="services">Services</a></li>
-                    <li><a href="about">About</a></li>
-                    <li><a href="pricing">Pricing</a></li>
-                    <li><a href="team">Team</a></li>
-                    <li><a href="blog">Blog</a></li>
-                    <li><a href="contact">Contact</a></li>
+                    <li><a href="./" class="<?php echo ($current_page === 'index' || $current_page === '') ? 'active' : ''; ?>">Home</a></li>
+                    <li><a href="services" class="<?php echo $current_page === 'services' ? 'active' : ''; ?>">Services</a></li>
+                    <li><a href="about" class="<?php echo $current_page === 'about' ? 'active' : ''; ?>">About</a></li>
+                    <li><a href="pricing" class="<?php echo $current_page === 'pricing' ? 'active' : ''; ?>">Pricing</a></li>
+                    <li><a href="team" class="<?php echo $current_page === 'team' ? 'active' : ''; ?>">Team</a></li>
+                    <li><a href="blog" class="<?php echo $current_page === 'blog' ? 'active' : ''; ?>">Blog</a></li>
+                    <li><a href="contact" class="<?php echo $current_page === 'contact' ? 'active' : ''; ?>">Contact</a></li>
                 </ul>
             </nav>
 
@@ -153,6 +156,9 @@ try {
         <!-- Back to Top Script -->
         <script>
             document.addEventListener('DOMContentLoaded', function() {
+                if (window.__backToTopBound) return;
+                window.__backToTopBound = true;
+
                 const backToTopBtn = document.getElementById('backToTop');
                 if (backToTopBtn) {
                     window.addEventListener('scroll', function() {

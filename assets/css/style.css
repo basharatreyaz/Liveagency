@@ -29,6 +29,22 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==========================================================================
+   React-like SPA Loading Bar
+   ========================================================================== */
+#react-loader-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--primary);
+    z-index: 999999;
+    width: 0%;
+    opacity: 0;
+    pointer-events: none;
+    box-shadow: 0 0 10px var(--primary);
+}
+
 /* Safely trap any overflowing elements (like the homepage badges) to prevent horizontal scrolling */
 .site-content {
     overflow-x: hidden;

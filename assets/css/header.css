@@ -65,7 +65,8 @@
     transition: color 0.3s ease;
 }
 
-.main-nav a:hover {
+.main-nav a:hover,
+.main-nav a.active {
     color: var(--primary); 
 }
 
@@ -281,7 +282,8 @@
    ========================================================================== */
 html.dark-theme .text-logo { color: #f8fafc; }
 html.dark-theme .main-nav a { color: #e2e8f0; }
-html.dark-theme .main-nav a:hover { color: var(--primary); }
+html.dark-theme .main-nav a:hover,
+html.dark-theme .main-nav a.active { color: var(--primary); }
 html.dark-theme .hamburger .bar { background-color: #f8fafc; }
 html.dark-theme .site-header { border-bottom: 1px solid #334155; }
 html.dark-theme .search-toggle-btn { color: #f8fafc; }

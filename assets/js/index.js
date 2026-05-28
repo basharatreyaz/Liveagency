@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetAttr = counter.getAttribute('data-target');
         if (!targetAttr) return; // Safeguard if a static string is passed
 
-        const target = parseFloat(targetAttr);
+        const target = parseFloat(targetAttr.replace(/,/g, ''));
+        if (isNaN(target)) return;
         const suffix = counter.getAttribute('data-suffix') || '';
         const decimals = parseInt(counter.getAttribute('data-decimals')) || 0;
         
