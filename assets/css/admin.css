@@ -65,21 +65,21 @@ td { color: #0f172a; font-size: .95rem; }
 /* ==========================================================================
    Dark Theme Overrides
    ========================================================================== */
-html.dark-theme body { background: #0f172a; color: #f8fafc; }
+html.dark-theme body { background: #000000; color: #f8fafc; }
 html.dark-theme .admin-sidebar { background: #020617; border-right: 1px solid #1e293b; }
 html.dark-theme .admin-topbar { background: #1e293b; border-bottom: 1px solid #334155; }
-html.dark-theme .card { background: #1e293b; border: 1px solid #334155; box-shadow: 0 4px 20px rgba(0,0,0,.3); }
+html.dark-theme .card { background: #000000; border: 1px solid #334155; box-shadow: 0 4px 20px rgba(0,0,0,.3); }
 html.dark-theme .page-title { color: #f8fafc; }
 html.dark-theme .admin-tools a, html.dark-theme .admin-tools button { color: #93c5fd; }
 html.dark-theme .form-group label { color: #e2e8f0; }
-html.dark-theme .form-group input, html.dark-theme .form-group textarea, html.dark-theme .form-group select { background: #0f172a; border: 1px solid #475569; color: #f8fafc; }
-html.dark-theme thead { background: #0f172a; }
+html.dark-theme .form-group input, html.dark-theme .form-group textarea, html.dark-theme .form-group select { background: #000000; border: 1px solid #475569; color: #f8fafc; }
+html.dark-theme thead { background: #000000; }
 html.dark-theme th { color: #94a3b8; }
 html.dark-theme td { color: #e2e8f0; }
 html.dark-theme th, html.dark-theme td { border-bottom: 1px solid #334155; }
 html.dark-theme .btn-secondary { background: #334155; color: #f8fafc; }
 html.dark-theme .admin-menu-toggle { color: #f8fafc; }
-html.dark-theme .status-draft { background: #0f172a; color: #cbd5e1; border-color: #475569; }
+html.dark-theme .status-draft { background: #000000; color: #cbd5e1; border-color: #475569; }
 html.dark-theme .status-published { background: #064e3b; color: #6ee7b7; }
 html.dark-theme .alert { background: #172554; border-color: #3b82f6; color: #bfdbfe; }
 html.dark-theme .btn-danger { background: #991b1b; color: #f8fafc; }

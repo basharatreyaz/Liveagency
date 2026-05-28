@@ -13,7 +13,7 @@
 
 /* Dark Theme Overrides */
 html.dark-theme .ql-toolbar.ql-snow { background: #1e293b; border-color: #475569; }
-html.dark-theme .ql-container.ql-snow { border-color: #475569; background: #0f172a; }
+html.dark-theme .ql-container.ql-snow { border-color: #475569; background: #000000; }
 html.dark-theme .ql-editor { color: #f8fafc; }
 html.dark-theme .ql-snow .ql-stroke { stroke: #94a3b8; }
 html.dark-theme .ql-snow .ql-fill { fill: #94a3b8; }

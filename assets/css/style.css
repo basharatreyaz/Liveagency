@@ -85,8 +85,17 @@ section {
     section {
         padding: 4rem 1.5rem;
     }
+
+    /* Reduce extra space between header and main heading on mobile */
+    .site-content section:first-of-type {
+        padding-top: 1.5rem;
+    }
+
     .page-title {
-        font-size: 2.15rem;
+        font-size: 2rem;
+    }
+    .page-subtitle {
+        font-size: 1.1rem;
     }
     .section-title {
         font-size: 1.75rem;
@@ -257,7 +266,7 @@ html.dark-theme {
 }
 
 html.dark-theme body {
-    background-color: #0f172a;
+    background-color: #000000;
 }
 
 /* Force Dark Backgrounds on Main Containers */
@@ -273,7 +282,7 @@ html.dark-theme .audit-hero,
 html.dark-theme .blog-hero,
 html.dark-theme .single-post-wrapper,
 html.dark-theme .main-nav {
-    background-color: #0f172a !important;
+    background-color: #000000 !important;
 }
 
 /* Force Dark Backgrounds on Components & Cards */
@@ -290,7 +299,7 @@ html.dark-theme .blog-card,
 html.dark-theme .accordion-header,
 html.dark-theme .accordion-content,
 html.dark-theme .floating-badge {
-    background-color: #1e293b !important;
+    background-color: #000000 !important;
     border-color: #334155 !important;
     color: var(--text-main);
 }

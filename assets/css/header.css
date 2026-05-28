@@ -289,7 +289,7 @@ html.dark-theme .site-header { border-bottom: 1px solid #334155; }
 html.dark-theme .search-toggle-btn { color: #f8fafc; }
 html.dark-theme .search-toggle-btn:hover { color: var(--primary); }
 html.dark-theme .search-modal-content { background: #1e293b; border: 1px solid #334155; }
-html.dark-theme .modal-search-form input { background: #0f172a; border-color: #475569; color: #f8fafc; }
+html.dark-theme .modal-search-form input { background: #000000; border-color: #475569; color: #f8fafc; }
 html.dark-theme .modal-search-form input:focus { border-color: var(--primary); }
 html.dark-theme .close-search-btn { color: #94a3b8; }
 html.dark-theme .close-search-btn:hover { color: #f8fafc; }

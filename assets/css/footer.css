@@ -99,7 +99,7 @@
    Footer Dark Mode Overrides
    ========================================================================== */
 html.dark-theme .site-footer {
-    background-color: #0f172a !important;
+    background-color: #000000 !important;
     border-top-color: #334155 !important;
     color: #94a3b8;
 }
@@ -113,7 +113,7 @@ html.dark-theme .footer-col a {
 }
 
 html.dark-theme .footer-bottom {
-    background-color: #0f172a !important;
+    background-color: #000000 !important;
     border-top-color: #334155 !important;
 }
 

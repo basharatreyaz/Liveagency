@@ -682,7 +682,11 @@
     }
 
     .hero-content h1 {
-        font-size: 2.15rem;
+        font-size: 2rem; /* Reduced from 2.15rem for better mobile fit */
+    }
+
+    .hero-content p {
+        font-size: 1.1rem; /* Reduced from 1.25rem for mobile */
     }
     
     .hero-features {
