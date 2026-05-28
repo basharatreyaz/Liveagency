@@ -68,7 +68,7 @@ require_once 'includes/header.php';
         </div>
 
         <div class="trusted-by">
-            <div class="trusted-label">Trusted by 10,000+ Website Owners Worldwide</div>
+            <div class="trusted-label">Trusted by 1,500+ Website Owners Worldwide</div>
             <div class="logo-flex">
                 <span>Brizy</span>
                 <span>WooCommerce</span>
@@ -103,6 +103,13 @@ require_once 'includes/header.php';
                 <div>
                     <div class="stat-number" data-target="330" data-suffix="%">0</div>
                     <div class="stat-label">Average Performance Improvement</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon"><i class="fa-regular fa-face-smile"></i></div>
+                <div>
+                    <div class="stat-number" data-target="350" data-suffix="+">0</div>
+                    <div class="stat-label">Happy Clients</div>
                 </div>
             </div>
         </div>
@@ -230,12 +237,12 @@ require_once 'includes/header.php';
         <div class="alt-stats-grid">
             <div class="alt-stat-item">
                 <div class="alt-stat-icon"><i class="fa-regular fa-face-smile"></i></div>
-                <div class="alt-stat-num query-counter" data-target="20000" data-suffix="+">0</div>
+                <div class="alt-stat-num query-counter" data-target="350" data-suffix="+">0</div>
                 <div class="alt-stat-lbl">Happy Clients</div>
             </div>
             <div class="alt-stat-item">
                 <div class="alt-stat-icon"><i class="fa-solid fa-laptop-code"></i></div>
-                <div class="alt-stat-num query-counter" data-target="50000" data-suffix="+">0</div>
+                <div class="alt-stat-num query-counter" data-target="1500" data-suffix="+">0</div>
                 <div class="alt-stat-lbl">Websites Maintained</div>
             </div>
             <div class="alt-stat-item">
@@ -245,7 +252,7 @@ require_once 'includes/header.php';
             </div>
             <div class="alt-stat-item">
                 <div class="alt-stat-icon"><i class="fa-regular fa-clock"></i></div>
-                <div class="alt-stat-num query-counter" data-target="8" data-suffix="+">0</div>
+                <div class="alt-stat-num query-counter" data-target="3" data-suffix="+">0</div>
                 <div class="alt-stat-lbl">Years Experience</div>
             </div>
         </div>
@@ -269,7 +276,7 @@ require_once 'includes/header.php';
                     <div class="checklist-item"><i class="fa-regular fa-circle-check"></i> Daily Maintenance Tasks</div>
                 </div>
 
-                <a href="#" class="btn btn-primary">Download Now <i class="fa-solid fa-arrow-down btn-icon-right"></i></a>
+                <a href="/#pop" class="btn btn-primary">Download Now <i class="fa-solid fa-arrow-down btn-icon-right"></i></a>
             </div>
             <div class="lead-mockup-container">
                 <svg width="220" height="280" viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg">
