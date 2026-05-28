@@ -84,8 +84,10 @@ try {
             });
         });
     </script>
+    <?php if (function_exists('inject_header_code')) inject_header_code(); ?>
 </head>
 <body>
+<?php if (function_exists('inject_body_code')) inject_body_code(); ?>
 
     <!-- Main Site Header -->
     <header class="site-header">

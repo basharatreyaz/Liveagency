@@ -1,4 +1,4 @@
-﻿﻿<?php
+﻿﻿﻿﻿<?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -70,6 +70,7 @@ $base_url = rtrim($protocol . '://' . $host . $script_dir, '/') . '/';
                 <a href="team-list.php"><i class="fa-solid fa-users"></i> Team Members</a>
                 <a href="seo-manager.php"><i class="fa-solid fa-magnifying-glass-chart"></i> SEO Manager</a>
                 <a href="backups.php"><i class="fa-solid fa-database"></i> Backups</a>
+                <a href="code-injection.php"><i class="fa-solid fa-code"></i> Code Injection</a>
             <?php endif; ?>
             <a href="../blog"><i class="fa-solid fa-newspaper"></i> View Blog</a>
             <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>

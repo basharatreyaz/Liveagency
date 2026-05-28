@@ -1,4 +1,4 @@
-﻿﻿<?php
+﻿﻿﻿﻿<?php
 require_once __DIR__ . '/../config.php';
 
 if (session_status() === PHP_SESSION_NONE) {
@@ -43,31 +43,6 @@ $backup_dir = __DIR__ . '/data/backups';
 
 include __DIR__ . '/includes/admin-header.php';
 ?>
-
-<div style="margin-bottom: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-    <div class="card" style="flex: 1; min-width: 250px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: none;">
-        <div style="background: rgba(16, 185, 129, 0.15); color: #10b981; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;">
-            <i class="fa-solid fa-shield-halved"></i>
-        </div>
-        <div>
-            <h3 style="margin: 0; font-size: 1.05rem;">Database Integrity</h3>
-            <p style="margin: 0.25rem 0 0; opacity: 0.8; font-size: 0.9rem;">
-                Secured. <strong><?php echo is_dir($backup_dir) ? count(glob($backup_dir . '/backup_*.db')) : 0; ?></strong> manual backups retained. <br><a href="backups.php" style="color:var(--primary); font-size:0.85rem; font-weight:600; text-decoration:none;"><i class="fa-solid fa-arrow-right"></i> Manage Backups</a>
-            </p>
-        </div>
-    </div>
-    <div class="card" style="flex: 1; min-width: 250px; padding: 1.25rem; display: flex; align-items: center; gap: 1rem; box-shadow: none;">
-        <div style="background: rgba(59, 130, 246, 0.15); color: #3b82f6; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;">
-            <i class="fa-solid fa-newspaper"></i>
-        </div>
-        <div>
-            <h3 style="margin: 0; font-size: 1.05rem;">Content Repository</h3>
-            <p style="margin: 0.25rem 0 0; opacity: 0.8; font-size: 0.9rem;">
-                <strong><?php echo $total_posts; ?></strong> total active database records.
-            </p>
-        </div>
-    </div>
-</div>
 
 <div class="card">
     <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">

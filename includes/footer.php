@@ -58,5 +58,6 @@
     <script src="assets/js/main.js?v=<?php echo time(); ?>"></script>
     <script src="assets/js/header.js?v=<?php echo time(); ?>"></script>
 
+<?php if (function_exists('inject_footer_code')) inject_footer_code(); ?>
 </body>
 </html>

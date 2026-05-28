@@ -1,4 +1,4 @@
-﻿﻿<?php
+﻿﻿﻿﻿<?php
 
 define('DB_FILE', __DIR__ . '/cms/data/wpsitedoctors.db');
 
@@ -184,4 +184,35 @@ function get_authors() {
 function cms_redirect($location) {
     header('Location: ' . $location);
     exit;
+}
+
+function get_code_injection_settings() {
+    static $settings = null;
+    if ($settings === null) {
+        try {
+            $pdo = get_pdo();
+            // Check if table exists to prevent errors on fresh install
+            $stmt = $pdo->query("SELECT name FROM sqlite_master WHERE type='table' AND name='site_settings'");
+            if ($stmt->fetch()) {
+                $stmt = $pdo->query('SELECT header_code, body_code, footer_code FROM site_settings WHERE id = 1');
+                $settings = $stmt->fetch(PDO::FETCH_ASSOC);
+            }
+        } catch (Exception $e) { }
+        if (!$settings) {
+             $settings = ['header_code' => '', 'body_code' => '', 'footer_code' => ''];
+        }
+    }
+    return $settings;
+}
+
+function inject_header_code() {
+    echo get_code_injection_settings()['header_code'] ?? '';
+}
+
+function inject_body_code() {
+    echo get_code_injection_settings()['body_code'] ?? '';
+}
+
+function inject_footer_code() {
+    echo get_code_injection_settings()['footer_code'] ?? '';
 }
